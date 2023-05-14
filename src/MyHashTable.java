@@ -24,27 +24,31 @@ public class MyHashTable<K, V> {
     */
     public void put(K key, V value) {
         int index = hash(key);
-        if (chain[index] == null){
-            chain[index] = new LinkedList<MyTestingClass<K, V>>();
+        if (chain[index] == null) {
+            chain[index] = new LinkedList<>();
         }
-        for (MyTestingClass<K, V> node: chain[index]){
-            if(node.getKey().equals(key)){
+        for (MyTestingClass<K, V> node : chain[index]) {
+            if (node.getKey().equals(key)) {
                 node.setValue(value);
                 return;
             }
         }
-        chain[index].add(new MyTestingClass<K, V>(key, value));
+        chain[index].add(new MyTestingClass<>(key, value));
         size++;
     }
+
     /*
       get is method used to retrieve the value associated with a key in the hashTable
     */
     public V get(K key) {
         int index = hash(key);
-        if (chain[index] == null) return null;
-
-        for (MyTestingClass<K, V> node: chain[index]){
-            if(node.getKey().equals(key)) return node.getValue();
+        if (chain[index] == null) {
+            return null;
+        }
+        for (MyTestingClass<K, V> node : chain[index]) {
+            if (node.getKey().equals(key)) {
+                return node.getValue();
+            }
         }
         return null;
     }
@@ -53,16 +57,16 @@ public class MyHashTable<K, V> {
     */
     public V remove(K key) {
         int index = hash(key);
-        if (chain[index] == null) return null;
-
-        for (MyTestingClass<K, V> node: chain[index]){
-            if(node.getKey().equals(key)) {
+        if (chain[index] == null) {
+            return null;
+        }
+        for (MyTestingClass<K, V> node : chain[index]) {
+            if (node.getKey().equals(key)) {
                 chain[index].remove(node);
                 size--;
                 return node.getValue();
             }
         }
-        size--;
         return null;
     }
     /*
