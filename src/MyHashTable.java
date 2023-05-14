@@ -4,6 +4,9 @@ public class MyHashTable<K, V> {
     private LinkedList<MyTestingClass<K, V>>[] chain;
     private int M = 11;
     private int size;
+    /*
+      MyHashTable is constructor that creates a hashTable
+    */
     public MyHashTable() {
         chain = new LinkedList[M];
         size = 0;
@@ -16,6 +19,9 @@ public class MyHashTable<K, V> {
     private int hash(K key) {
         return key.hashCode() % M;
     }
+    /*
+      put is method used to add elements to the hashTable
+    */
     public void put(K key, V value) {
         int index = hash(key);
         if (chain[index] == null){
@@ -30,6 +36,9 @@ public class MyHashTable<K, V> {
         chain[index].add(new MyTestingClass<K, V>(key, value));
         size++;
     }
+    /*
+      get is method used to retrieve the value associated with a key in the hashTable
+    */
     public V get(K key) {
         int index = hash(key);
         if (chain[index] == null) return null;
@@ -39,6 +48,9 @@ public class MyHashTable<K, V> {
         }
         return null;
     }
+    /*
+      remove is used to remove a key-value pair from the hash table
+    */
     public V remove(K key) {
         int index = hash(key);
         if (chain[index] == null) return null;
@@ -53,6 +65,9 @@ public class MyHashTable<K, V> {
         size--;
         return null;
     }
+    /*
+      contains checks if the hash table contains a specific value
+    */
     public boolean contains(V value) {
         for(LinkedList<MyTestingClass<K,V>> list: chain) {
             for(MyTestingClass<K,V> node: list){
