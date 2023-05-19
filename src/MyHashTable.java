@@ -69,13 +69,6 @@ public class MyHashTable<K, V> {
         }
         return null;
     }
-    public K replace(K key, V oldvalue, V newvalue){
-        if (contains(oldvalue) == true){
-            remove((K) oldvalue);
-            put(key, newvalue);
-        }
-        return null;
-    }
     /*
       contains checks if the hash table contains a specific value
     */
@@ -97,5 +90,12 @@ public class MyHashTable<K, V> {
     }
     public int getSize() {
         return size;
+    }
+    public K replace(K key, V oldvalue, V newvalue){
+        if (contains(oldvalue) == true){
+            remove(getKey(oldvalue));
+            put(key, newvalue);
+        }
+        return null;
     }
 }
